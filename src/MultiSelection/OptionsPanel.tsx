@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { createSignal, For, onCleanup, Setter } from 'solid-js';
 import clickOutSide from '../hideOnClickOutside';
 
@@ -7,6 +8,8 @@ type Props = {
   setSelections: Setter<string[]>;
   hidden: boolean;
   setHidden: Setter<boolean>;
+  hiliteIndex: number | undefined;
+  setHiliteIndex: Setter<number | undefined>;
 };
 
 export default function OptionsPanel(props: Props) {
@@ -47,7 +50,7 @@ export default function OptionsPanel(props: Props) {
       }}
     >
       <For each={props.options}>
-        {(item) => (
+        {(item, i) => (
           <label
             onClick={() => {
               const isSel = isSelected(item);
@@ -58,14 +61,8 @@ export default function OptionsPanel(props: Props) {
                 props.setSelections([...props.selections, item]);
               }
             }}
-            classList={{
-              'cursor-pointer': true,
-              block: true,
-              'px-4': true,
-              'bg-gray-200':
-                props.selections.filter((x) => x === item).length > 0,
-              'hover:bg-gray-400': true,
-            }}
+            onPointerEnter={() => props.setHiliteIndex(i())}
+            class={`cursor-pointer block px-4 ${props.hiliteIndex === i() ? 'bg-gray-400' : isSelected(item) && 'bg-gray-200'}`}
           >
             {item}
           </label>
