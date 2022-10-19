@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .arrow-r {
+    @apply before:content-[''] before:w-0 before:h-0 before:border-[20px] before:border-blue-800 before:border-l-blue-800 before:absolute before:left-full before:top-1/2
+      after:content-[''] after:w-0 after:h-0 after:border-[14px] after:border-teal-500 after:border-l-teal-500 after:absolute after:left-full after:top-1/2
+  }
+}

@@ -38,7 +38,7 @@ const App: Component = () => {
       }}
     >
       <div class="flex relative mt-4 gap-x-2 w-full h-16 bg-black px-2 overflow-hidden">
-        {options.map(c => (
+        {options.map((c) => (
           <button class="text-white rounded-full px-2.5 py-1 border border-gray-600/75 bg-gray-700/75 self-center">
             {c}
           </button>
@@ -52,6 +52,9 @@ const App: Component = () => {
         selected={selected()}
         setSelected={setSelected}
       />
+      <div class="mt-4 border-4 border-blue-800 rounded w-40 h-40 bg-teal-500  text-white relative
+      arrow-r
+      ">An amazing arrow</div>
     </div>
   );
 };
